@@ -15,4 +15,4 @@ EXPOSE 1313
 
 WORKDIR /src
 
-CMD ["hugo", "server", "--bind=0.0.0.0", "--port=1313", "--destination=src", "--source=/website", "--baseURL=http://localhost:1313"]
+CMD ["hugo", "server", "--bind=0.0.0.0", "--port=1313", "--destination=src", "--source=/website"]
