@@ -9,3 +9,26 @@ build:
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
   rules:
     - if: $CI_COMMIT_BRANCH
+
+pages:
+  script:
+    - hugo --minify -e gl-pages -s website -d ../public
+  artifacts:
+    paths:
+      - public
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  except:
+    refs:
+      - main
+
+aws:
+  script:
+    - hugo --minify -e s3 -s website
+    - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
+  only:
+    refs:
+      - main
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
