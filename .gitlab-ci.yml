@@ -1,4 +1,4 @@
-build_image:
+.build_image:
   stage: build
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -25,7 +25,7 @@ pages:
 
 aws:
   extends: 
-    - build_image
+    - .build_image
   script:
     - hugo --minify -e s3 -s website
     - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
