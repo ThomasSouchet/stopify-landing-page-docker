@@ -1,0 +1,23 @@
+readmore:
+  other: "Continuer à lire"
+
+translations:
+  other: "Traductions"
+
+error404:
+  other: "Oups... la page que vous cherchez n'existe pas."
+
+yourname:
+  other: "Votre Nom"
+
+youremail:
+  other: "Votre Email"
+
+subject:
+  other: "Sujet"
+
+yourmessage:
+  other: "Votre Message"
+
+sendnow:
+  other: "Envoyer"
