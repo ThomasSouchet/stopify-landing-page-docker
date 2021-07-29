@@ -1,6 +1,0 @@
-baseURL: http://stopify.fr/
-title: Stopify
-theme: bigspring
-defaultContentLanguage: fr
-paginate: 3
-summaryLength: 15

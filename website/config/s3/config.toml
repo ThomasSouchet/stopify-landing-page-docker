@@ -1,7 +1,0 @@
-baseURL = "http://stopify-thomas.s3-website.eu-north-1.amazonaws.com"
-
-[deployment]
-
-[[deployment.targets]]
-name = "awss3"
-URL = "s3://stopify-thomas?region=eu-north-1"
