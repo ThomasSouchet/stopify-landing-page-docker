@@ -24,9 +24,7 @@ pages:
       - main
 
 aws:
-  image:
-    name: $CI_REGISTRY_IMAGE:latest
-    entrypoint: [""]
+  image: $CI_REGISTRY_IMAGE/hugo_extended
   script:
     - hugo --minify -e s3 -s website
     - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
