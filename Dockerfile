@@ -6,7 +6,7 @@ RUN apk --no-cache add bash bash-completion ca-certificates libc6-compat libstdc
  && mkdir -p /src /target \
  && chmod a+w /src /target
 
-ADD _script/hugo.sh hugo.sh
+ADD script/hugo.sh hugo.sh
 RUN sh hugo.sh && rm hugo.sh
 
 EXPOSE 1313
