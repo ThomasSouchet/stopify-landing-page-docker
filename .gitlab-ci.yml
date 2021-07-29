@@ -33,7 +33,7 @@ aws:
     entrypoint: [""]
   script:
     - hugo --minify -e s3 -s website
-    - echo $AWS_ACCESS_KEY_ID
+    - echo $CI_COMMIT_BRANCH
     - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
   only:
     refs:
