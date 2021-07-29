@@ -24,13 +24,13 @@ pages:
       - main
 
 aws:
+  variables:
+    - $CI_REGISTRY_USER
+    - $CI_REGISTRY_PASSWORD
+    - $CI_REGISTRY
   image:
     name: $CI_REGISTRY_IMAGE:latest
     entrypoint: [""]
-    variables:
-      - $CI_REGISTRY_USER
-      - $CI_REGISTRY_PASSWORD
-      - $CI_REGISTRY
   script:
     - hugo --minify -e s3 -s website
     - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
