@@ -1,8 +1,3 @@
-variables:
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
 build_image:
   stage: build
   image:
@@ -14,29 +9,3 @@ build_image:
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
   rules:
     - if: $CI_COMMIT_BRANCH
-
-pages:
-  image: 
-    name: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
-    entrypoint: [""]
-  script:
-    - hugo --minify -e gl-pages -s website -d ../public
-  artifacts:
-    paths:
-      - public
-  except:
-    refs:
-      - main
-
-aws:
-  image: 
-    name: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
-    entrypoint: [""]
-  script:
-    - hugo --minify -e s3 -s website
-    - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
-  only:
-    refs:
-      - main
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
