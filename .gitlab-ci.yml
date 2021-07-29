@@ -24,7 +24,9 @@ pages:
       - main
 
 aws:
-  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+  image: 
+    name: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    entrypoint: [""]
   script:
     - hugo --minify -e s3 -s website
     - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
