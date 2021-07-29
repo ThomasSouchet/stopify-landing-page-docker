@@ -1,3 +1,8 @@
+variables:
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+
 build_image:
   stage: build
   image:
@@ -24,16 +29,12 @@ pages:
       - main
 
 aws:
-  variables:
-    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
   image: 
     name: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
     entrypoint: [""]
   script:
     - hugo --minify -e s3 -s website
-    - echo $CI_COMMIT_BRANCH
+    - echo $AWS_ACCESS_KEY_ID
     - hugo deploy --force --maxDeletes -1 --invalidateCDN -e s3 -s website
   only:
     refs:
