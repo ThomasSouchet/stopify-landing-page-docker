@@ -24,10 +24,6 @@ pages:
       - main
 
 aws:
-  variables:
-    - $CI_REGISTRY_USER
-    - $CI_REGISTRY_PASSWORD
-    - $CI_REGISTRY
   image:
     name: $CI_REGISTRY_IMAGE:latest
     entrypoint: [""]
