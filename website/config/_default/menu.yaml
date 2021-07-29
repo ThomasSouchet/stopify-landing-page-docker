@@ -4,7 +4,7 @@ main:
   url: 
   weight: 1
 - identifier: faq
-  name: FAR
+  name: FAQ
   url: faq
   weigh: 2
 - identifier: contact
