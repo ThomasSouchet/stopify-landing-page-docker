@@ -12,5 +12,3 @@ RUN sh hugo.sh && rm hugo.sh
 EXPOSE 1313
 
 WORKDIR /src
-
-ENTRYPOINT ["hugo"]
